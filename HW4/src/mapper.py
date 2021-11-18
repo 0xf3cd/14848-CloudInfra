@@ -23,4 +23,4 @@ for line in sys.stdin:
   if not validate(temp, quality):
     continue
 
-  print(f'{day} {temp}')
+  print(str(day) + ' ' + str(temp))

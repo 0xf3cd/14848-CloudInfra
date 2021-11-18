@@ -18,7 +18,7 @@ for line in sys.stdin:
   # Check if we need to update the metadata.
   if day != cur_day:
     if cur_day:
-      print(f'{cur_day}\t{cur_max_temp}')
+      print(str(cur_day) + '\t' + str(cur_max_temp))
     cur_day = day
     cur_max_temp = -9999
 
@@ -26,4 +26,4 @@ for line in sys.stdin:
     cur_max_temp = temp
 
 if cur_day:
-  print(f'{cur_day}\t{cur_max_temp}')
+  print(str(cur_day) + '\t' + str(cur_max_temp))
