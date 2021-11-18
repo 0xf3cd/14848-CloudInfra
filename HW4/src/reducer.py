@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import sys
 
 cur_day = None
