@@ -1,9 +1,9 @@
 import sys
 
 def parse_line(line):
-  day = int(line[15:24])
-  temp = int(line[87:93])
-  quality = int(line[93])
+  day = int(line[15:23])
+  temp = int(line[87:92])
+  quality = int(line[92])
   return (day, temp, quality)
 
 def validate(temp, quality):
