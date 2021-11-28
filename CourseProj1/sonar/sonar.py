@@ -36,10 +36,11 @@ def handle_msg(client, server, msg):
   res = ''
   while True:
     buf = channel.recv(BUF_SIZE)
-    buf = buf.decode('utf-8')
-    res += buf
-    if ':~#' in res:
+    buf_str = buf.decode('utf-8')
+    res += buf_str
+    if buf.endswith(b'\x1b[6n'):
       break
+
   # Remove the first line (which is the user's commands).
   res = res.split('\n')[1:]
   res = '\n'.join(res)
