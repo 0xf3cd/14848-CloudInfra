@@ -21,7 +21,27 @@ RUN unzip sonar-scanner-cli-4.0.0.1744.zip
 RUN mv sonar-scanner-4.0.0.1744 sonar-scanner
 ENV PATH "$PATH:/opt/sonarqube/sonar-scanner/bin"
 
+# Change password for root
+RUN echo "root:root" | chpasswd
+
+# Add ssh.
+RUN apk add openssh-client
+RUN apk add openssh-server
+RUN apk add openrc
+RUN openrc
+RUN touch /run/openrc/softlevel
+RUN mv /etc/ssh/sshd_config /etc/ssh/sshd_config_backup
+COPY sshd_config /etc/ssh/sshd_config
+RUN chmod a-x /etc/ssh/sshd_config
+RUN /etc/init.d/sshd start
+RUN /etc/init.d/sshd stop
+
 # Copy the src codes.
 COPY sonar.py ./
-# TODO: EXPOSE some ports here.
+
+ENV PARAMIKO_USER "root"
+ENV PARAMIKO_PASSWORD "root"
+ENV PARAMIKO_WS_PORT "8901"
+EXPOSE 8901
+
 CMD ["python3", "./sonar.py"]

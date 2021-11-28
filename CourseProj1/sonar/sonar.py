@@ -8,7 +8,6 @@ BUF_SIZE    = 4096
 SSH_USER    = os.environ.get('PARAMIKO_USER')
 SSH_PSWD    = os.environ.get('PARAMIKO_PASSWORD')
 PORT        = int(os.environ.get('PARAMIKO_WS_PORT'))
-END_SYMBOLS =  ['$ ', '# ', '> ', '* ']
 
 client_channels = dict() # Key: client's id, Value: the ssh channel object
 
@@ -39,12 +38,14 @@ def handle_msg(client, server, msg):
     buf = channel.recv(BUF_SIZE)
     buf = buf.decode('utf-8')
     res += buf
-    if res[-2:] in END_SYMBOLS:
+    if ':~#' in res:
       break
   # Remove the first line (which is the user's commands).
   res = res.split('\n')[1:]
   res = '\n'.join(res)
   server.send_message(client, res)
+
+os.system('/etc/init.d/sshd start')
 
 server = WebsocketServer(host='0.0.0.0', port=PORT, loglevel=logging.INFO)
 server.set_fn_new_client(new_client)
