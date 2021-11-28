@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: courseproj1-jupyter
 spec:
+  type: LoadBalancer
   ports:
     - port: 80
       protocol: TCP
