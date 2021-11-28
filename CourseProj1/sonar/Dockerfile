@@ -38,10 +38,8 @@ RUN /etc/init.d/sshd stop
 
 # Copy the src codes.
 COPY sonar.py ./
-
 ENV PARAMIKO_USER "root"
 ENV PARAMIKO_PASSWORD "root"
-ENV PARAMIKO_WS_PORT "8901"
-EXPOSE 8901
-
+ENV PARAMIKO_WS_PORT "60004"
+EXPOSE 60004
 CMD ["python3", "./sonar.py"]
