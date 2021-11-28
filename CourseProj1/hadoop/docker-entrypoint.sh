@@ -9,5 +9,5 @@ fi
 $HADOOP_HOME/sbin/start-dfs.sh
 $HADOOP_HOME/sbin/start-yarn.sh
 
-# bash
+sudo /etc/init.d/ssh start
 python3 /src/hadoop.py
