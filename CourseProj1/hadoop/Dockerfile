@@ -1,8 +1,25 @@
 # Reference: https://github.com/rancavil/hadoop-single-node-cluster/blob/master/Dockerfile
-FROM ubuntu:20.04
+FROM debian:stable
 
 # Install required libraries.
-RUN apt-get update -y && apt-get install vim -y && apt-get install wget -y && apt-get install ssh -y && apt-get install openjdk-8-jdk -y && apt-get install sudo -y && apt-get install python3-pip -y
+RUN echo "deb http://deb.debian.org/debian/ sid main" >> /etc/apt/sources.list
+RUN apt update
+RUN apt install -y python3
+RUN apt install -y python3-pip
+RUN apt install -y wget
+RUN apt install -y sudo
+RUN apt install -y openjdk-8-jdk
+RUN apt install -y openssh-server
+RUN apt install -y vim
+
+# Change password for root
+RUN echo "root:root" | chpasswd
+
+# Configure sshd
+RUN rm /etc/ssh/sshd_config
+COPY sshd_config /etc/ssh/sshd_config
+RUN /etc/init.d/ssh start
+
 RUN useradd -m hduser && echo "hduser:supergroup" | chpasswd && adduser hduser sudo && echo "hduser     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && cd /usr/bin/ && sudo ln -s python3 python
 
 # Install python3 and libraries.

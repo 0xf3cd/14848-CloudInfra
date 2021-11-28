@@ -1,2 +1,2 @@
 paramiko==2.8.0
-websocket-server==0.6.0
+SimpleWebSocketServer==0.1.1
