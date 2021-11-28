@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: courseproj1-sonar
+  labels:
+    app: courseproj1-sonar
+spec:
+  selector:
+    matchLabels:
+      app: courseproj1-sonar
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: courseproj1-sonar
+    spec:
+      containers:
+        - image: nqmaigre/courseproj1-sonar:latest
+          imagePullPolicy: Always
+          name: courseproj1-sonar
+          ports:
+            - containerPort: 60004
