@@ -46,6 +46,8 @@ def handle_msg(client, server, msg):
   res = '\n'.join(res)
   server.send_message(client, res)
 
+os.system('/etc/init.d/ssh start')
+
 server = WebsocketServer(host='0.0.0.0', port=PORT, loglevel=logging.INFO)
 server.set_fn_new_client(new_client)
 server.set_fn_message_received(handle_msg)

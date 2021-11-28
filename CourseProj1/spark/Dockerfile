@@ -27,5 +27,8 @@ COPY requirements.txt ./
 COPY spark.py ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# TODO: EXPOSE some ports here.
-CMD ["python", "./spark.py"]
+ENV PARAMIKO_USER "root"
+ENV PARAMIKO_PASSWORD "root"
+ENV PARAMIKO_WS_PORT "60002"
+EXPOSE 60002
+CMD ["python3", "./spark.py"]
