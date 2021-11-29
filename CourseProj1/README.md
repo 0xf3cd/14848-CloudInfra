@@ -4,6 +4,10 @@
 
 
 
+Code walkthrough and demo: https://youtu.be/M8UMvr69FAE
+
+
+
 ## 0x0. Introduction
 
 I will use `React` to construct a web-based GUI.
@@ -82,6 +86,10 @@ The docker images used:
 8. Get the external IP to the frontend service and visit it.
 
    ![](https://github.com/0xf3cd/14848-CloudInfra/blob/main/CourseProj1/deployment_screenshots/5.png?raw=true)
+
+
+
+The code walkthrough and demo: https://youtu.be/M8UMvr69FAE
 
 
 
