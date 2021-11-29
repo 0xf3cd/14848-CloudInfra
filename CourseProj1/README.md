@@ -57,7 +57,7 @@ The docker images used:
 
    ![](https://github.com/0xf3cd/14848-CloudInfra/blob/main/CourseProj1/deployment_screenshots/2.png?raw=true)
 
-5. Update the source codes for the frontend. Do `cd ../gui/course-proj1/src/common`, and modify the file `url.ts`.
+5. Update the source codes for the frontend on **local machine**. Do `cd ../gui/course-proj1/src/common`, and modify the file `url.ts`.
 
    ```typescript
    // TODO: Modify the URLs and re-build the docker image.
@@ -79,7 +79,7 @@ The docker images used:
 
    ![](https://github.com/0xf3cd/14848-CloudInfra/blob/main/CourseProj1/deployment_screenshots/3.png?raw=true)
 
-7. Back to GCP cloud shell terminal. Locate to directory `14848-CloudInfra/CourseProj1/yaml`. Deploy the pods and service for frontend by `kubectl apply -f frontend-deployment.yaml` and `kubectl apply -f frontend-service.yaml`. Wait until the deployment finishes.
+7. Go back to GCP cloud shell terminal. Locate to directory `14848-CloudInfra/CourseProj1/yaml`. Deploy the pods and service for frontend by `kubectl apply -f frontend-deployment.yaml` and `kubectl apply -f frontend-service.yaml`. Wait until the deployment finishes.
 
    ![](https://github.com/0xf3cd/14848-CloudInfra/blob/main/CourseProj1/deployment_screenshots/4.png?raw=true)
 
