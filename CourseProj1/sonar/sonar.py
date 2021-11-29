@@ -8,6 +8,7 @@ BUF_SIZE    = 4096
 SSH_USER    = os.environ.get('PARAMIKO_USER')
 SSH_PSWD    = os.environ.get('PARAMIKO_PASSWORD')
 PORT        = int(os.environ.get('PARAMIKO_WS_PORT'))
+END_SYMBOLS =  ['$ ', '# ', '> ', '* ']
 
 client_channels = dict() # Key: client's id, Value: the ssh channel object
 
@@ -38,7 +39,7 @@ def handle_msg(client, server, msg):
     buf = channel.recv(BUF_SIZE)
     buf_str = buf.decode('utf-8')
     res += buf_str
-    if buf.endswith(b'\x1b[6n'):
+    if buf.endswith(b'\x1b[6n') or res[-2:] in END_SYMBOLS:
       break
 
   # Remove the first line (which is the user's commands).
